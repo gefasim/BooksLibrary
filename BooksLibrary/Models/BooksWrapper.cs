@@ -3,14 +3,14 @@ using System.Xml.Serialization;
 namespace BooksLibrary.Models;
 
 [XmlRoot(ElementName = "BooksRoot")]
-public class Books
+public class BooksWrapper
 {
     [XmlArray(ElementName = "Books")]
-    public required IEnumerable<Book> BooksArray { get; set;}
+    public Book[] BooksArray { get; set;}
 
-    public Books() {}
+    public BooksWrapper() {}
 
-    public Books(IEnumerable<Book> books)
+    public BooksWrapper(Book[] books)
     {
         BooksArray = books;
     }
