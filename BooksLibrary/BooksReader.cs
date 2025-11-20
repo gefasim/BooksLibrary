@@ -11,6 +11,6 @@ public class BooksReader
         BooksWrapper? books;
         using var stream = new FileStream(path, FileMode.Open);
         books = serializer.Deserialize(stream) as BooksWrapper;
-        return new BooksService(books ?? new BooksWrapper());
+        return new BooksService(books ?? new BooksWrapper(), path);
     }
 }

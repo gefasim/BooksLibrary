@@ -6,10 +6,12 @@ namespace BooksLibrary;
 public class BooksService
 {
     private BooksWrapper books;
+    private readonly string path;
 
-    internal BooksService(BooksWrapper books)
+    internal BooksService(BooksWrapper books, string path)
     {
         this.books = books;
+        this.path = path;
     }
 
     public IEnumerable<Book> Get()
@@ -32,7 +34,7 @@ public class BooksService
         return null;
     }
 
-    public void Save(string path)
+    public void Save()
     {
         var serializer = new XmlSerializer(typeof(BooksWrapper));
         using TextWriter writer = new StreamWriter(path);
