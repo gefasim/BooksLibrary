@@ -5,40 +5,40 @@ namespace BooksLibrary;
 
 public class BooksService
 {
-    private readonly BooksWrapper books;
+    private readonly BooksWrapper booksWrapper;
     private readonly string path;
 
-    internal BooksService(BooksWrapper books, string path)
+    internal BooksService(BooksWrapper booksWrapper, string path)
     {
-        this.books = books;
+        this.booksWrapper = booksWrapper;
         this.path = path;
     }
 
     public IEnumerable<Book> GetAll()
     {
-        return books.BooksArray;
+        return booksWrapper.Books ?? [];
     }
 
     public BooksService Add(Book book)
     {
-        books.BooksArray = books.BooksArray != null
-            ? [.. books.BooksArray, book]
+        booksWrapper.Books = booksWrapper.Books != null
+            ? [.. booksWrapper.Books, book]
             : [book];
         return this;
     }
 
     public BooksService Sort()
     {
-        books.BooksArray = books.BooksArray != null && books.BooksArray.Count > 0
-            ? [.. books.BooksArray.OrderBy(book => book.Author).ThenBy(book => book.Title)]
+        booksWrapper.Books = booksWrapper.Books != null && booksWrapper.Books.Count > 0
+            ? [.. booksWrapper.Books.OrderBy(book => book.Author).ThenBy(book => book.Title)]
             : [];
         return this;
     }
 
     public IEnumerable<Book> Find(string title)
     {
-        return books.BooksArray != null && books.BooksArray.Length > 0
-            ? books.BooksArray.Where(b => b.Title.Contains(title))
+        return booksWrapper.Books != null && booksWrapper.Books.Count > 0
+            ? booksWrapper.Books.Where(b => b.Title.Contains(title))
             : [];
     }
 
@@ -46,6 +46,6 @@ public class BooksService
     {
         var serializer = new XmlSerializer(typeof(BooksWrapper));
         using TextWriter writer = new StreamWriter(path);
-        serializer.Serialize(writer, books);
+        serializer.Serialize(writer, booksWrapper);
     }
 }

@@ -6,12 +6,12 @@ namespace BooksLibrary.Models;
 public class BooksWrapper
 {
     [XmlArray(ElementName = "Books")]
-    public Book[] BooksArray { get; set;}
+    public List<Book> Books { get; set;}
 
     public BooksWrapper() {}
 
-    public BooksWrapper(Book[] books)
+    public BooksWrapper(List<Book> books)
     {
-        BooksArray = books;
+        Books = books;
     }
 }
