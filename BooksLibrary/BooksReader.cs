@@ -5,8 +5,19 @@ namespace BooksLibrary;
 
 public class BooksReader
 {
-    public static BooksService ReadFile(string path)
+    /// <summary>
+    /// Reads XML file with Books.
+    /// Creates a new file on a step <see cref="BookService.Save()"/> if file doesn't exists.
+    /// </summary>
+    /// <param name="path">books xml file path</param>
+    /// <returns>BooksService</returns>
+    public static BooksService ReadOrCreateFile(string path)
     {
+        if (!File.Exists(path))
+        {
+            return new BooksService(new BooksWrapper(), path);
+        }
+
         var serializer = new XmlSerializer(typeof(BooksWrapper));
         BooksWrapper? books;
         using var stream = new FileStream(path, FileMode.Open);
