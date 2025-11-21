@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BooksRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Books>
+    <Book>
+      <Title>Echo</Title>
+      <Author>Bryce</Author>
+      <NumberOfPages>120</NumberOfPages>
+    </Book>
+    <Book>
+      <Title>Delta</Title>
+      <Author>Bryce</Author>
+      <NumberOfPages>120</NumberOfPages>
+    </Book>
+    <Book>
+      <Title>Foxtrot</Title>
+      <Author>Cooper</Author>
+      <NumberOfPages>130</NumberOfPages>
+    </Book>
+    <Book>
+      <Title>Bravo</Title>
+      <Author>Adam</Author>
+      <NumberOfPages>100</NumberOfPages>
+    </Book>
+    <Book>
+      <Title>Alfa</Title>
+      <Author>Adam</Author>
+      <NumberOfPages>100</NumberOfPages>
+    </Book>
+  </Books>
+</BooksRoot>
