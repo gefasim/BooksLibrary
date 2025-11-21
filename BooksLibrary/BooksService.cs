@@ -32,9 +32,11 @@ public class BooksService
         return this;
     }
 
-    public Book? Find(string title)
+    public IEnumerable<Book> Find(string title)
     {
-        return null;
+        return books.BooksArray != null && books.BooksArray.Length > 0
+            ? books.BooksArray.Where(b => b.Title.Contains(title))
+            : [];
     }
 
     public void Save()
