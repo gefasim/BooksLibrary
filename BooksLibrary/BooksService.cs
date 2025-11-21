@@ -14,11 +14,20 @@ public class BooksService
         this.path = path;
     }
 
+    /// <summary>
+    /// Gets all books
+    /// </summary>
+    /// <returns>IEnumerable of books</returns>
     public IEnumerable<Book> GetAll()
     {
         return booksWrapper.Books ?? [];
     }
 
+    /// <summary>
+    /// Adds a book in the end of the collection
+    /// </summary>
+    /// <param name="book">book model</param>
+    /// <returns>BooksService</returns>
     public BooksService Add(Book book)
     {
         booksWrapper.Books = booksWrapper.Books != null
@@ -27,6 +36,10 @@ public class BooksService
         return this;
     }
 
+    /// <summary>
+    /// Sort books by Author first, then by Title
+    /// </summary>
+    /// <returns>BooksService</returns>
     public BooksService Sort()
     {
         booksWrapper.Books = booksWrapper.Books != null && booksWrapper.Books.Count > 0
@@ -35,6 +48,11 @@ public class BooksService
         return this;
     }
 
+    /// <summary>
+    /// Find books by substring of the title
+    /// </summary>
+    /// <param name="title">substring of the title</param>
+    /// <returns>IEnumerable of books</returns>
     public IEnumerable<Book> Find(string title)
     {
         return booksWrapper.Books != null && booksWrapper.Books.Count > 0
@@ -42,6 +60,9 @@ public class BooksService
             : [];
     }
 
+    /// <summary>
+    /// Saves the books to the XML file
+    /// </summary>
     public void Save()
     {
         var serializer = new XmlSerializer(typeof(BooksWrapper));
