@@ -18,10 +18,19 @@ public class BooksReader
             return new BooksService(new BooksWrapper(), path);
         }
 
-        var serializer = new XmlSerializer(typeof(BooksWrapper));
-        BooksWrapper? books;
-        using var stream = new FileStream(path, FileMode.Open);
-        books = serializer.Deserialize(stream) as BooksWrapper;
-        return new BooksService(books ?? new BooksWrapper(), path);
+        try
+        {
+            var serializer = new XmlSerializer(typeof(BooksWrapper));
+            BooksWrapper? books;
+            using var stream = new FileStream(path, FileMode.Open);
+            books = serializer.Deserialize(stream) as BooksWrapper;
+            return new BooksService(books ?? new BooksWrapper(), path);
+        } catch (InvalidOperationException e)
+        {
+            throw new Exception("Invalid data format", e);
+        } catch (Exception e)
+        {
+            throw new Exception("Exception occurred on the file read", e);
+        }
     }
 }

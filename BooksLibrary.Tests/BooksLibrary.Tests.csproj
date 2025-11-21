@@ -17,7 +17,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../BooksLibrary/BooksLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="NUnit.Framework" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="./TestsData/validFileWithNoBooks.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="./TestsData/invalidFile.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
