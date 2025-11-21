@@ -5,7 +5,7 @@ namespace BooksLibrary;
 
 public class BooksService
 {
-    private BooksWrapper books;
+    private readonly BooksWrapper books;
     private readonly string path;
 
     internal BooksService(BooksWrapper books, string path)
@@ -19,8 +19,11 @@ public class BooksService
         return null;
     }
 
-    public BooksService Add()
+    public BooksService Add(Book book)
     {
+        books.BooksArray = books.BooksArray != null
+            ? [.. books.BooksArray, book]
+            : [book];
         return this;
     }
 
