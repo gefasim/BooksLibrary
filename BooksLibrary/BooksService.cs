@@ -29,6 +29,9 @@ public class BooksService
 
     public BooksService Sort()
     {
+        books.BooksArray = books.BooksArray != null && books.BooksArray.Count > 0
+            ? [.. books.BooksArray.OrderBy(book => book.Author).ThenBy(book => book.Title)]
+            : [];
         return this;
     }
 
