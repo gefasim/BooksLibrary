@@ -14,9 +14,9 @@ public class BooksService
         this.path = path;
     }
 
-    public IEnumerable<Book> Get()
+    public IEnumerable<Book> GetAll()
     {
-        return null;
+        return books.BooksArray;
     }
 
     public BooksService Add(Book book)
